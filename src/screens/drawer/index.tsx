@@ -1,11 +1,11 @@
-import { Ionicons } from '@expo/vector-icons'
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
 import { StyleSheet } from 'react-native'
 import Projetos from '../tabs'
 import Forms from './formularios'
 
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 export default function App() {
   const Drawer = createDrawerNavigator()

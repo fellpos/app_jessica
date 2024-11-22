@@ -26,7 +26,7 @@ export default function Tela1() {
             const response = await axios.get(url);
             setProjetos(response.data);
         } catch (err) {
-            Alert.alert('Erro',)
+            
         }
     }
 
@@ -96,7 +96,6 @@ export default function Tela1() {
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
         alignItems: 'center',
         backgroundColor: '#f0f0f0',
     },

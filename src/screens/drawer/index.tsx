@@ -1,25 +1,32 @@
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-
-import { createDrawerNavigator } from '@react-navigation/drawer'
-import { NavigationContainer } from '@react-navigation/native'
-import { StyleSheet } from 'react-native'
-import Projetos from '../tabs'
-import Forms from './formularios'
-
+import { Ionicons } from '@expo/vector-icons';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import Projetos from '../tabs';
+import Forms from './formularios';
 
 export default function App() {
-  const Drawer = createDrawerNavigator()
-
+  const Drawer = createDrawerNavigator();
 
   function tela(props: { nome: string; icone: string; titulo: string; componente: any }) {
     return (
       <Drawer.Screen
         name={props.nome}
         component={props.componente}
-        options={{
+        options={({ navigation }) => ({
           headerStyle: styles.header,
           headerTitleStyle: styles.headerTitle,
           headerTitleAlign: 'center',
+          headerLeft: () => (
+            <Ionicons
+              name="menu"
+              size={55}
+              color="#fff"
+              style={{ marginLeft: 10 }}
+              onPress={() => navigation.openDrawer()}
+            />
+          ),
           drawerIcon: ({ focused }: any) => (
             <MaterialCommunityIcons
               name={props.icone as any}
@@ -29,22 +36,20 @@ export default function App() {
           ),
           drawerLabel: props.titulo,
           title: props.titulo,
-
           drawerActiveTintColor: '#FFFFFF',
           drawerInactiveTintColor: '#665441',
           drawerActiveBackgroundColor: '#665441',
           drawerStyle: styles.drawer,
           drawerItemStyle: styles.drawerItem,
-          headerTintColor: '#FFFFFF'
-        }}
+        })}
+        
       />
-    )
+    );
   }
 
   return (
     <NavigationContainer>
       <Drawer.Navigator>
-
         {tela({
           nome: 'Projetos',
           icone: 'pencil-ruler',
@@ -58,10 +63,9 @@ export default function App() {
           titulo: 'Formulários',
           componente: Forms,
         })}
-
       </Drawer.Navigator>
     </NavigationContainer>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -72,6 +76,9 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#947759',
+    elevation: 0, // Remove sombra no Android
+    shadowOpacity: 0, // Remove sombra no iOS
+    borderBottomWidth: 0,
   },
   headerTitle: {
     color: '#ffff',
@@ -82,4 +89,4 @@ const styles = StyleSheet.create({
   drawerItem: {
     borderRadius: 30,
   },
-})
+});

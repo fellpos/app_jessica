@@ -1,35 +1,82 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { Alert, ScrollView, RefreshControl, StyleSheet } from 'react-native';
+import axios from 'axios';
+import Projeto from '@/src/components/projeto'; // Ajuste a importação conforme necessário
 
-export default function Tela1({ navigation }: any) {
-    return (
-        <View style={styles.view}>
-            <Text style={styles.primaryText}>tela 1</Text>
-            <Pressable style={styles.button} onPress={() => navigation.navigate('Tela2')}>
-                <Text style={styles.buttonText}>Clique</Text>
-            </Pressable>
-        </View>
-    )
+interface ProjetoType {
+    nome: string;
+    id: string;
+    cliente: string;
+    tipo: string;
+    inicio: string;
+    contato: string;
+    descricao: string;
+    valor: number;
+    pago: number;
 }
 
+export default function Tela1() {
+    const [projetos, setProjetos] = useState<ProjetoType[]>([]);
+    const [refreshing, setRefreshing] = useState(false);
+    const [refreshToggle, setRefreshToggle] = useState(false); // Estado para forçar o fechamento dos detalhes
+
+    async function buscarProjeto() {
+        try {
+            const url = `http://192.168.0.3:5030/projeto`; // Certifique-se que a URL está correta
+            const response = await axios.get(url);
+            setProjetos(response.data);
+        } catch (err) {
+            Alert.alert('Erro', )
+        }
+    }
+
+    const onRefresh = () => {
+        setRefreshing(true);
+        setRefreshToggle((prev) => !prev); // Alterna o valor do toggle para fechar detalhes
+        buscarProjeto();
+        setRefreshing(false);
+    };
+
+    useEffect(() => {
+        buscarProjeto();
+    }, []);
+
+    return (
+        <ScrollView
+            contentContainerStyle={styles.container}
+            refreshControl={
+                <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                    colors={['#007AFF']}
+                    tintColor="#007AFF"
+                />
+            }
+        >
+            {projetos.map((item) => (
+                <Projeto
+                    key={item.id}
+                    id={item.id}
+                    nome={item.nome}
+                    cliente={item.cliente}
+                    tipo={item.tipo}
+                    contato={item.contato}
+                    data={item.inicio}
+                    descricao={item.descricao}
+                    valor={item.valor}
+                    pago={item.pago}
+                    refreshToggle={refreshToggle} // Passa o toggle para forçar o fechamento
+                />
+
+                
+            ))}
+        </ScrollView>
+    );
+};
+
 const styles = StyleSheet.create({
-    view: {
-        flex: 1,
-        justifyContent: 'center',
+    container: {
         alignItems: 'center',
+        backgroundColor: '#f0f0f0',
     },
-    primaryText: {
-        textAlign: 'center',
-        fontSize: 16,
-        paddingBottom: 15,
-        marginTop: 50,
-    },
-    button: {
-        backgroundColor: '#801090',
-        padding: 15,
-        borderRadius: 5,
-    },
-    buttonText: {
-        color: '#FFFFFF',
-        fontSize: 16,
-    },
-})
+});

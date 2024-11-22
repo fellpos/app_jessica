@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    backgroundColor: 'rgba(166, 137, 107, 0.83)',
+    backgroundColor: '#947759',
   },
   headerTitle: {
     color: '#ffff',

@@ -76,7 +76,7 @@ export default function Projetos() {
 
 const styles = StyleSheet.create({
     tabs: {
-        backgroundColor: '#A6896B',
+        backgroundColor: '#947759',
         height: 80,
         paddingTop: 9
     },

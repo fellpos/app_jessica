@@ -82,8 +82,4 @@ const styles = StyleSheet.create({
   drawerItem: {
     borderRadius: 30,
   },
-  texto: {
-    fontSize: 20,
-    color: 'red',
-  },
 })

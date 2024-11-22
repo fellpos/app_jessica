@@ -22,7 +22,7 @@ export default function Tela1() {
 
     async function buscarProjeto() {
         try {
-            const url = `http://192.168.0.3:5030/projeto`; // Certifique-se que a URL está correta
+            const url = `http://4.172.207.208:5030/projeto`; // Certifique-se que a URL está correta
             const response = await axios.get(url);
             setProjetos(response.data);
         } catch (err) {

@@ -52,7 +52,7 @@ export default function Tela3() {
         }
 
         try {
-            const response = await fetch('http://192.168.0.3:5030/projeto/andamento', {
+            const response = await fetch('http://4.172.207.208:5030/projeto/andamento', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -74,7 +74,7 @@ export default function Tela3() {
 
     async function ConsultarRecente() {
         try {
-            const url = `http://192.168.0.3:5030/projeto/andamento/recente`;
+            const url = `http://4.172.207.208:5030/projeto/andamento/recente`;
             const resp = await axios.get(url);
 
             const dados = resp.data;
@@ -89,7 +89,7 @@ export default function Tela3() {
 
     async function consultarPorId() {
         try {
-            const url = `http://192.168.0.3:5030/projetos/andamento/${IdRecente}`;
+            const url = `http://4.172.207.208:5030/projetos/andamento/${IdRecente}`;
             const resp = await axios.get(url);
 
             let dados = resp.data;
@@ -105,7 +105,7 @@ export default function Tela3() {
 
     async function Deletar() {
         try {
-            const url = `http://192.168.0.3:5030/projeto/andamento/${IdRecente}`;
+            const url = `http://4.172.207.208:5030/projeto/andamento/${IdRecente}`;
             await axios.delete(url);
 
             Alert.alert('Sucesso', `Deletado com Sucesso`)
@@ -122,7 +122,7 @@ export default function Tela3() {
     async function Alterar() {
         try {
 
-            const response = await fetch('http://192.168.0.3:5030/projeto/andamento', {
+            const response = await fetch('http://4.172.207.208:5030/projeto/andamento', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

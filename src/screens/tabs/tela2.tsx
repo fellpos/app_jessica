@@ -41,7 +41,7 @@ export default function Tela2() {
             };
 
             try {
-                const url = `http://192.168.0.3:5030/projeto`;
+                const url = `http://4.172.207.208:5030/projeto`;
                 const resp = await axios.post(url, paramCorpo);
 
                 setNomeProjeto('');
@@ -69,7 +69,7 @@ export default function Tela2() {
                 descricao: descricaoTarefa,
                 projeto: idProjeto
             }
-            const url = `http://192.168.0.3:5030/tarefa`
+            const url = `http://4.172.207.208:5030/tarefa`
             let resp = await axios.post(url, tarefa)
 
             setDescricaoTarefa('')

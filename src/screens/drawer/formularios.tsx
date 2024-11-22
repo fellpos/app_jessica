@@ -28,8 +28,8 @@ export default function Forms() {
     async function buscarForms() {
         try {
             const url = selectedValue != 'Todos'
-                ? `http://192.168.0.3:5030/formulario/${selectedValue}`
-                : `http://192.168.0.3:5030/formulario`
+                ? `http://4.172.207.208:5030/formulario/${selectedValue}`
+                : `http://4.172.207.208:5030/formulario`
             let resp = await axios.get(url)
 
             setFormularios(resp.data)

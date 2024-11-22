@@ -59,7 +59,7 @@ const Projeto: React.FC<AccordionProps> = ({ nome, id, cliente, tipo, data, cont
 
     async function buscarTarefas() {
         try {
-            const url = `http://192.168.0.3:5030/tarefa/${id}`;
+            const url = `http://4.172.207.208:5030/tarefa/${id}`;
             const resp = await axios.get(url);
             const dados = resp.data;
             setTarefas(dados);
@@ -70,7 +70,7 @@ const Projeto: React.FC<AccordionProps> = ({ nome, id, cliente, tipo, data, cont
 
     const consultarProjetoPorId = async () => {
         try {
-            const url = `http://192.168.0.3:5030/projeto/${id}`;
+            const url = `http://4.172.207.208:5030/projeto/${id}`;
             const resp = await axios.get(url);
             let dados = resp.data;
             let infos = dados[0];
@@ -98,7 +98,7 @@ const Projeto: React.FC<AccordionProps> = ({ nome, id, cliente, tipo, data, cont
 
     async function Deletar() {
         try {
-            const url = `http://192.168.0.3:5030/projeto/${id}`;
+            const url = `http://4.172.207.208:5030/projeto/${id}`;
             const resp = await axios.delete(url);
 
             if (resp.status === 200) {
@@ -138,7 +138,7 @@ Carregue novamente a página.`);
             };
 
             try {
-                const url = `http://192.168.0.3:5030/projeto/${id}`;
+                const url = `http://4.172.207.208:5030/projeto/${id}`;
                 const resp = await axios.put(url, paramCorpo);
 
                 setEditando(false)

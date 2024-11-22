@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, ScrollView, RefreshControl, StyleSheet } from 'react-native';
+import { Alert, ScrollView, RefreshControl, StyleSheet, View, Text } from 'react-native';
 import axios from 'axios';
 import Projeto from '@/src/components/projeto'; // Ajuste a importação conforme necessário
 
@@ -26,7 +26,7 @@ export default function Tela1() {
             const response = await axios.get(url);
             setProjetos(response.data);
         } catch (err) {
-            Alert.alert('Erro', )
+            Alert.alert('Erro',)
         }
     }
 
@@ -39,7 +39,7 @@ export default function Tela1() {
 
     useEffect(() => {
         buscarProjeto();
-    }, []);
+    }, [projetos]);
 
     return (
         <ScrollView
@@ -53,6 +53,27 @@ export default function Tela1() {
                 />
             }
         >
+            {projetos == undefined || projetos == null || projetos.length <= 0 &&
+                <View style={{
+                    height: '500%',
+                    width: '100%',
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    borderWidth: 1
+                }}>
+                    <Text style={{
+                        fontSize: 20,
+                    }}>Nenhum Projeto no Momento</Text>
+                    <Text style={{
+                        fontSize: 17,
+                        textAlign: 'center',
+                        color: '#787878',
+                        marginTop: 15,
+                        width: 250
+                    }}>Adicione um Novo no botão central, localizado na parte de baixo da tela</Text>
+                </View>
+            }
+
             {projetos.map((item) => (
                 <Projeto
                     key={item.id}
@@ -67,15 +88,15 @@ export default function Tela1() {
                     pago={item.pago}
                     refreshToggle={refreshToggle} // Passa o toggle para forçar o fechamento
                 />
-
-                
             ))}
+
         </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        // flex: 1,
         alignItems: 'center',
         backgroundColor: '#f0f0f0',
     },

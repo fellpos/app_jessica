@@ -75,11 +75,11 @@ export default function Forms() {
                         onValueChange={(itemValue) => setSelectedValue(itemValue)}
                         style={styles.picker}
                     >
+                        <Picker.Item label="Todos" value="Todos" />
                         <Picker.Item label="Brasil" value="Brasil" />
                         <Picker.Item label="Estados Unidos" value="Estados Unidos" />
                         <Picker.Item label="Irlanda do Norte" value="Irlanda do Norte" />
                         <Picker.Item label="Irlanda do Sul" value="Irlanda do Sul" />
-                        <Picker.Item label="Todos" value="Todos" />
                     </Picker>
                 </View>
 

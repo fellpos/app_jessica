@@ -332,7 +332,17 @@ Carregue novamente a página.`);
 
                                 <View style={styles.descriptionBox}>
                                     <Text style={styles.descriptionTitle}>Sobre o Projeto:</Text>
-                                    <Text style={styles.description}>{descricaoProjeto}</Text>
+                                    <Text style={{
+                                        borderRadius: 10,
+                                        borderColor: '#665441',
+                                        borderWidth: 2,
+                                        color: '#333',
+                                        fontSize: 16,
+                                        backgroundColor: '#FFF',
+                                        padding: 10,
+                                        marginTop: 5,
+                                        textAlign: 'center',
+                                    }}>{descricaoProjeto}</Text>
                                 </View>
 
                                 <View style={styles.inputs}>
@@ -402,9 +412,10 @@ const styles = StyleSheet.create({
         borderColor: '#665441',
         borderWidth: 2,
         borderRadius: 5,
-
+        
         backgroundColor: '#FFF',
         paddingHorizontal: 10,
+        alignSelf: 'center',
     },
     inputs: {
         marginTop: 20,
@@ -417,14 +428,15 @@ const styles = StyleSheet.create({
         marginTop: 20,
         // borderWidth: 1,
         width: '100%',
-
+        
     },
     dataInput: {
+        alignSelf: 'center',
         width: 160,
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-
+        
         borderRadius: 5,
         borderColor: '#665441',
         borderWidth: 2,
@@ -439,6 +451,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     button: {
+        alignSelf: 'center',
         backgroundColor: '#A6896B',
         textAlign: 'center',
         width: '65%',
@@ -463,6 +476,8 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
     subTitleBox: {
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
         padding: 10,
         backgroundColor: '#B3B3B3',
     },
@@ -480,18 +495,21 @@ const styles = StyleSheet.create({
         padding: 15,
     },
     descriptionTitle: {
+        alignSelf: 'center',
         paddingLeft: 10,
         marginBottom: 5,
         fontSize: 18,
+        borderColor: '#665441',
+        borderWidth: 0.1,
     },
     description: {
+        borderRadius: 10,
         color: '#333',
         fontSize: 16,
         backgroundColor: '#FFF',
         padding: 10,
         marginTop: 5,
         textAlign: 'center',
-        borderRadius: 10,
     },
     taskContainer: {
         paddingLeft: 15,

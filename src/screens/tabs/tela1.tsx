@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, ScrollView, RefreshControl, StyleSheet, View, Text } from 'react-native';
+import { Alert, ScrollView, RefreshControl, StyleSheet, View, Text, StatusBar } from 'react-native';
 import axios from 'axios';
 import Projeto from '@/src/components/projeto'; // Ajuste a importação conforme necessário
 
@@ -26,7 +26,7 @@ export default function Tela1() {
             const response = await axios.get(url);
             setProjetos(response.data);
         } catch (err) {
-            
+
         }
     }
 
@@ -53,14 +53,18 @@ export default function Tela1() {
                 />
             }
         >
+            <StatusBar backgroundColor="#665441" />
             {projetos == undefined || projetos == null || projetos.length <= 0 &&
                 <View style={{
-                    height: '500%',
+                    height: 450,
                     width: '100%',
-                    justifyContent: 'center', 
+                    justifyContent: 'center',
+                    alignContent: 'center',
                     alignItems: 'center',
                 }}>
                     <Text style={{
+                        textAlign: 'center',
+                        alignSelf: 'center',
                         fontSize: 20,
                     }}>Nenhum Projeto no Momento</Text>
                     <Text style={{
@@ -68,7 +72,7 @@ export default function Tela1() {
                         textAlign: 'center',
                         color: '#787878',
                         marginTop: 15,
-                        width: 250
+                        width: '70%',
                     }}>Adicione um Novo no botão central, localizado na parte de baixo da tela</Text>
                 </View>
             }

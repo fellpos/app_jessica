@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, ScrollView, RefreshControl, StyleSheet, View, Text, StatusBar } from 'react-native';
+import { ScrollView, RefreshControl, StyleSheet, View, Text, StatusBar } from 'react-native';
 import axios from 'axios';
-import Projeto from '@/src/components/projeto'; // Ajuste a importação conforme necessário
+import Projeto from '@/src/components/projeto';
 
 interface ProjetoType {
     nome: string;
@@ -18,11 +18,11 @@ interface ProjetoType {
 export default function Tela1() {
     const [projetos, setProjetos] = useState<ProjetoType[]>([]);
     const [refreshing, setRefreshing] = useState(false);
-    const [refreshToggle, setRefreshToggle] = useState(false); // Estado para forçar o fechamento dos detalhes
+    const [refreshToggle, setRefreshToggle] = useState(false);
 
     async function buscarProjeto() {
         try {
-            const url = `http://4.172.207.208:5030/projeto`; // Certifique-se que a URL está correta
+            const url = `http://4.172.207.208:5030/projeto`;
             const response = await axios.get(url);
             setProjetos(response.data);
         } catch (err) {

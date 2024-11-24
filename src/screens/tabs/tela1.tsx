@@ -58,8 +58,7 @@ export default function Tela1() {
                     height: '500%',
                     width: '100%',
                     justifyContent: 'center', 
-                    alignItems: 'center', 
-                    borderWidth: 1
+                    alignItems: 'center',
                 }}>
                     <Text style={{
                         fontSize: 20,

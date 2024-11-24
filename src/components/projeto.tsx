@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { TextInput, Alert, View, Text, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
+import axios from 'axios';
+
 import { Feather } from '@expo/vector-icons';
 import Entypo from '@expo/vector-icons/Entypo';
-import axios from 'axios';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 interface AccordionProps {
@@ -157,7 +158,7 @@ Carregue novamente a página.`);
         setEditando(false)
         setIsOpen(false); // Fecha os detalhes ao carregar a tarefa
     }, [id]);
-    
+
     useEffect(() => {
         buscarTarefas();
         if (editando) {
@@ -378,6 +379,13 @@ Carregue novamente a página.`);
                                 <Pressable onPress={alterarProjeto}>
                                     <Text style={styles.button}>ALTERAR</Text>
                                 </Pressable>
+
+                                <Pressable onPress={() => setEditando(false)}>
+                                    <MaterialIcons name="edit-off" size={54} color="black" style={{
+                                        textAlign: 'right',
+                                        paddingRight: 10,
+                                    }}/>
+                                </Pressable>
                             </View>
                         </>
                     }
@@ -412,15 +420,16 @@ const styles = StyleSheet.create({
         borderColor: '#665441',
         borderWidth: 2,
         borderRadius: 5,
-        
+
         backgroundColor: '#FFF',
         paddingHorizontal: 10,
         alignSelf: 'center',
+        padding: 12,
+        height: 50,
     },
     inputs: {
         marginTop: 20,
         justifyContent: 'center',
-        // borderWidth: 0.1,
     },
     dataInputBox: {
         justifyContent: 'center',
@@ -428,7 +437,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         // borderWidth: 1,
         width: '100%',
-        
+
     },
     dataInput: {
         alignSelf: 'center',
@@ -436,7 +445,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-        
+
         borderRadius: 5,
         borderColor: '#665441',
         borderWidth: 2,

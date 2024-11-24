@@ -171,7 +171,7 @@ export default function Tela2() {
                 <Text style={styles.inputLabel}>Tipo do Projeto:</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Digite o tipo do projeto"
+                    placeholder="Casa, Apartamento..."
                     onChangeText={setTipoProjeto}
                     value={tipoProjeto}
                 />
@@ -181,7 +181,7 @@ export default function Tela2() {
                 <Text style={styles.inputLabel}>Descrição do Projeto:</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Digite a descrição"
+                    placeholder="Este projeto visa a criação de um edifício..."
                     onChangeText={setDescricao}
                     value={descricao}
                 />
@@ -191,7 +191,7 @@ export default function Tela2() {
                 <Text style={styles.inputLabel}>Valor Total Estimado:</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Digite o valor total estimado"
+                    placeholder="1234,56..."
                     onChangeText={setValorTotalEstimado}
                     value={valorTotalEstimado}
                 />
@@ -201,7 +201,7 @@ export default function Tela2() {
                 <Text style={styles.inputLabel}>Valor Pago:</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Digite o valor pago"
+                    placeholder="123,45..."
                     onChangeText={setValorPago}
                     value={valorPago}
                 />
@@ -211,7 +211,7 @@ export default function Tela2() {
                 <Text style={styles.inputLabel}>Forma de Pagamento:</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Digite a forma de pagamento"
+                    placeholder="Crédito, Débito, Pix..."
                     onChangeText={setFormaPagamento}
                     value={formaPagamento}
                 />

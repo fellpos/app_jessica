@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button, Image, Text, StyleSheet, Alert, TextInput, ScrollView, Pressable, RefreshControl } from 'react-native';
+import { View, Image, Text, StyleSheet, Alert, TextInput, ScrollView, Pressable, RefreshControl } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -21,7 +21,7 @@ export default function Tela3() {
 
     const [editando, setEditando] = useState(false);
 
-    const [refreshing, setRefreshing] = useState(false); // Estado para o refresh
+    const [refreshing, setRefreshing] = useState(false);
 
     const pickImage = async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
@@ -40,7 +40,6 @@ export default function Tela3() {
                     reader.onerror = reject;
                     reader.readAsDataURL(blob);
                 }));
-
             setImagem(base64Image);
         }
     };
@@ -52,7 +51,7 @@ export default function Tela3() {
         }
 
         try {
-            const response = await fetch('http://4.172.207.208:5030/projeto/andamento', {
+            const response = await fetch('http://192.168.0.9:5030/projeto/andamento', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -74,7 +73,7 @@ export default function Tela3() {
 
     async function ConsultarRecente() {
         try {
-            const url = `http://4.172.207.208:5030/projeto/andamento/recente`;
+            const url = `http://192.168.0.9:5030/projeto/andamento/recente`;
             const resp = await axios.get(url);
 
             const dados = resp.data;
@@ -89,7 +88,7 @@ export default function Tela3() {
 
     async function consultarPorId() {
         try {
-            const url = `http://4.172.207.208:5030/projetos/andamento/${IdRecente}`;
+            const url = `http://192.168.0.9:5030/projetos/andamento/${IdRecente}`;
             const resp = await axios.get(url);
 
             let dados = resp.data;
@@ -105,7 +104,7 @@ export default function Tela3() {
 
     async function Deletar() {
         try {
-            const url = `http://4.172.207.208:5030/projeto/andamento/${IdRecente}`;
+            const url = `http://192.168.0.9:5030/projeto/andamento/${IdRecente}`;
             await axios.delete(url);
 
             Alert.alert('Sucesso', `Deletado com Sucesso`)
@@ -122,7 +121,7 @@ export default function Tela3() {
     async function Alterar() {
         try {
 
-            const response = await fetch('http://4.172.207.208:5030/projeto/andamento', {
+            const response = await fetch('http://192.168.0.9:5030/projeto/andamento', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -197,7 +196,7 @@ export default function Tela3() {
                 <Text style={styles.inputLabel}>TIPO:</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Digite o Tipo"
+                    placeholder="Casa, Apartamento..."
                     onChangeText={setTipo}
                     value={Tipo}
                 />
@@ -207,7 +206,7 @@ export default function Tela3() {
                 <Text style={styles.inputLabel}>LOCAL:</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Digite o Local"
+                    placeholder="São Paulo - Brasil..."
                     onChangeText={setLocal}
                     value={Local}
                 />
@@ -244,7 +243,7 @@ export default function Tela3() {
                             </View>
 
                             <Pressable style={styles.previewIcons}>
-
+                            
                                 <FontAwesome name="trash" size={54} color="black" onPress={Deletar} />
                                 <Feather name="edit" size={50} color="black" onPress={() => {
                                     consultarPorId()

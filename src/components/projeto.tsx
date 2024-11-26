@@ -60,7 +60,7 @@ const Projeto: React.FC<AccordionProps> = ({ nome, id, cliente, tipo, data, cont
 
     async function buscarTarefas() {
         try {
-            const url = `http://4.172.207.208:5030/tarefa/${id}`;
+            const url = `http://192.168.0.9:5030/tarefa/${id}`;
             const resp = await axios.get(url);
             const dados = resp.data;
             setTarefas(dados);
@@ -71,7 +71,7 @@ const Projeto: React.FC<AccordionProps> = ({ nome, id, cliente, tipo, data, cont
 
     const consultarProjetoPorId = async () => {
         try {
-            const url = `http://4.172.207.208:5030/projeto/${id}`;
+            const url = `http://192.168.0.9:5030/projeto/${id}`;
             const resp = await axios.get(url);
             let dados = resp.data;
             let infos = dados[0];
@@ -99,7 +99,7 @@ const Projeto: React.FC<AccordionProps> = ({ nome, id, cliente, tipo, data, cont
 
     async function Deletar() {
         try {
-            const url = `http://4.172.207.208:5030/projeto/${id}`;
+            const url = `http://192.168.0.9:5030/projeto/${id}`;
             const resp = await axios.delete(url);
 
             if (resp.status === 200) {
@@ -132,14 +132,14 @@ Carregue novamente a página.`);
                 contato: contatoCliente,
                 inicio: dataInicio.toISOString().split('T')[0],
                 tipo: tipoProjeto,
-                descricao,
+                descricao: descricaoProjeto,
                 valor: valorTotal,
                 pago: valorPagoFormatado,
                 pagamento: formaPagamento,
             };
 
             try {
-                const url = `http://4.172.207.208:5030/projeto/${id}`;
+                const url = `http://192.168.0.9:5030/projeto/${id}`;
                 const resp = await axios.put(url, paramCorpo);
 
                 setEditando(false)
@@ -189,7 +189,7 @@ Carregue novamente a página.`);
                     <View style={styles.subTitleBox}>
                         <Text style={{
                             fontSize: 18,
-                            backgroundColor: '#947759',
+                            backgroundColor: '#665441',
                             padding: 10,
                             width: '30%',
                             textAlign: 'center',
@@ -197,19 +197,21 @@ Carregue novamente a página.`);
                             color: '#FFF',
                             fontWeight: '700'
                         }}>Id: {id}</Text>
+
                         <Text style={{
                             fontSize: 22,
                             color: '#FFF',
                             fontWeight: '700',
                             textAlign: 'center',
-
                         }}>{tipo} - {cliente}</Text>
+
                         <View style={{
                             borderWidth: 1,
                             marginVertical: 10,
                             alignSelf: 'center',
                             width: 200,
                         }} />
+                        
                         <Text style={styles.subSubTitle}>Contato: {contato}</Text>
                         <Text style={styles.subSubTitle}>Iniciado em {formatData(data || '')}</Text>
                     </View>
@@ -333,19 +335,27 @@ Carregue novamente a página.`);
 
                                 <View style={styles.descriptionBox}>
                                     <Text style={styles.descriptionTitle}>Sobre o Projeto:</Text>
-                                    <Text style={{
-                                        borderRadius: 10,
-                                        borderColor: '#665441',
-                                        borderWidth: 2,
-                                        color: '#333',
-                                        fontSize: 16,
-                                        backgroundColor: '#FFF',
-                                        padding: 10,
-                                        marginTop: 5,
-                                        textAlign: 'center',
-                                    }}>{descricaoProjeto}</Text>
+                                    <TextInput
+                                        style={{
+                                            borderRadius: 10,
+                                            borderColor: '#665441',
+                                            borderWidth: 2,
+                                            color: '#333',
+                                            fontSize: 16,
+                                            backgroundColor: '#FFF',
+                                            padding: 10,
+                                            marginTop: 5,
+                                            textAlign: 'center',
+                                            height: 70
+                                        }}
+                                        placeholder="Digite o tipo do projeto"
+                                        onChangeText={setDescricaoProjeto}
+                                        value={descricaoProjeto}
+                                    />
                                 </View>
+{/*
 
+*/}
                                 <View style={styles.inputs}>
                                     <Text style={styles.inputLabel}>Valor Total Estimado:</Text>
                                     <TextInput
@@ -381,7 +391,7 @@ Carregue novamente a página.`);
                                 </Pressable>
 
                                 <Pressable onPress={() => setEditando(false)}>
-                                    <MaterialIcons name="edit-off" size={54} color="black" style={{
+                                    <MaterialIcons name="edit-off" size={50} color="black" style={{
                                         textAlign: 'right',
                                         paddingRight: 10,
                                     }}/>
@@ -435,7 +445,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         marginTop: 20,
-        // borderWidth: 1,
         width: '100%',
 
     },
@@ -467,7 +476,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 50,
         paddingVertical: 8,
         marginTop: 40,
-        marginBottom: 50,
+        marginBottom: 20,
         fontSize: 18,
         color: '#FFF',
         borderRadius: 100,
@@ -508,10 +517,9 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         marginBottom: 5,
         fontSize: 18,
-        borderColor: '#665441',
-        borderWidth: 0.1,
     },
     description: {
+        textAlignVertical: 'center',
         borderRadius: 10,
         color: '#333',
         fontSize: 16,
@@ -519,6 +527,8 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 5,
         textAlign: 'center',
+        borderColor: '#665441',
+        borderWidth: 3,
     },
     taskContainer: {
         paddingLeft: 15,
@@ -539,6 +549,8 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
     },
     Value: {
+        borderColor: '#665441',
+        borderWidth: 3,
         alignSelf: 'center',
         borderRadius: 10,
         backgroundColor: '#FFF',
